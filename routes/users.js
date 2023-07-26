@@ -22,7 +22,7 @@ router.put('/:id',[
     validateChars,
 ],putUsers );
 
-router.post('/',[
+router.post('/register',[
     check('name', 'El nombre es obligatorio').not().isEmpty(),
     check('email', 'El correo no es válido').isEmail(),
     check('email').custom(mailIsValid),

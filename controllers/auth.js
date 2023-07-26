@@ -41,7 +41,7 @@ const login = async(req, res = response) => {
         //Generar JWT
         const token = await generateJWT( user.id );        
 
-        res.status(500).json({
+        res.json({
             user,
             token
         })
@@ -56,9 +56,20 @@ const login = async(req, res = response) => {
 }
 
 
+const refreshToken = async(req, res) => 
+{
+    //Traigo la informacion que manda validateJWT
+    const user = req.authUser;
+   
+    const token = await generateJWT( user.id );
 
+    res.json({
+        user,
+        token
+    })
+}
 
 module.exports = {
     login,
-    
+    refreshToken
 }
